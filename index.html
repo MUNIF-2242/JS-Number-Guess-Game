@@ -11,15 +11,50 @@
   <body>
     <div class="container">
       <h1 id="level">Level: 1</h1>
-      <p>Attempts remaining:...</p>
-      <p>Attempts count:0</p>
-      <h1 id="target">Your Target:...</h1>
-      <h1>Your max attempt:...</h1>
+      <p id="attempts-remaining">Attempts remaining:</p>
+      <p id="attempts-counter">Attempts count:0</p>
+      <h1 id="target">Your Target:</h1>
+      <h1 id="max-attempt">Your max attempt:</h1>
       <p>Try your luck button generate a random number between 0-5</p>
       <button id="try-your-luck-btn">Try your luck</button>
       <p>Generated number will be added to your score</p>
-      <p>You can click the button upto ...times to reach the targeted value</p>
-      <h1 id="score">Score:</h1>
+      <p id="bottom-warning-text">
+        You can click the button upto ...times to reach the targeted value
+      </p>
+      <h1 id="score">Score:0</h1>
+    </div>
+    <!-- The Success Modal -->
+    <!-- The Modal -->
+    <div id="mySuccessModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2>You Won</h2>
+        </div>
+        <div class="modal-body">
+          <p>Congrates! You passed the level 1. Now you are in level 2.</p>
+        </div>
+        <div class="modal-footer">
+          <button id="ok-btn">Ok</button>
+        </div>
+      </div>
+    </div>
+    <!-- The Failure Modal -->
+    <!-- The Modal -->
+    <div id="myFailureModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>You Lose</h2>
+        </div>
+        <div class="modal-body">
+          <p>Sorry, max limit exceed.</p>
+        </div>
+        <div class="modal-footer">
+          <button id="try-again-btn">Try again</button>
+        </div>
+      </div>
     </div>
 
     <script src="./js/index.js"></script>
