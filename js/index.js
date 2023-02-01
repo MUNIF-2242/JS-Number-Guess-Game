@@ -6,7 +6,6 @@ function generateRandomNumbers(min, max) {
 
 function startGame() {
   let level = getLevel();
-  //let level = 1;
   let count = 0;
   let score = 0;
   const levelTarget = generateRandomNumbers(45, 50);
@@ -18,6 +17,7 @@ function startGame() {
   let scoreText = document.getElementById('score');
   // Get the modal
   let successModal = document.getElementById('mySuccessModal');
+  let successModalBody = document.getElementById('success-modal-msg');
   let failureModal = document.getElementById('myFailureModal');
 
   // Get the button
@@ -38,8 +38,10 @@ function startGame() {
     let generatedNumber = generateRandomNumbers(0, 5);
     //console.log(`generated number ${generatedNumber}`);
 
+    //createCircle();
     if (score + generatedNumber <= levelTarget) {
       score = score + generatedNumber;
+      createCircle();
       //console.log(`score ${score}`);
       Validation();
     } else {
@@ -55,20 +57,44 @@ function startGame() {
     attemptsCounterText.innerHTML = `Attempts count: ${count}`;
     scoreText.innerHTML = `Score: ${score}`;
   };
+  function createCircle() {
+    for (let circleCounter = 1; circleCounter <= score; circleCounter++) {
+      console.log(`circleCounter` + circleCounter);
+    }
+    createElementSpan(score);
+    console.log(`score ${score}`);
+  }
+  function createElementSpan(numberOfCircle) {
+    const element = document.getElementById('circle-container');
+    element.remove();
 
+    let container = document.querySelector('.container');
+    let parent_obj = document.createElement('div');
+
+    parent_obj.setAttribute('id', 'circle-container');
+    container.appendChild(parent_obj);
+
+    for (let i = 1; i <= numberOfCircle; i++) {
+      let span_obj = document.createElement('span');
+      span_obj.setAttribute('class', 'dot');
+      // span_obj.textContent = `${i}`;
+      parent_obj.appendChild(span_obj);
+    }
+  }
   function Validation() {
     if (count < levelMaxAttempt) {
       if (score == levelTarget) {
-        //showSuccessModal();
         setTimeout(showSuccessModal, 100);
       }
     } else {
-      //setTimeout(showFailureModal, 100);
       showFailureModal();
     }
   }
 
   function showSuccessModal() {
+    let curLevel = level;
+    let nextLevel = parseInt(curLevel) + 1;
+    successModalBody.innerHTML = `Congrates! You passed the level ${curLevel}. Now you are in level ${nextLevel}`;
     successModal.style.display = 'block';
   }
   function showFailureModal() {
@@ -88,19 +114,11 @@ function startGame() {
 function getLevel() {
   let x = localStorage.getItem('level');
   //document.getElementById('level').innerHTML = x;
-  if (x == null) {
-    return (x = 1);
-  }
+  if (x == null) return (x = 1);
   //console.log(`level ${x}`);
   else return x;
 }
 window.onload = function () {
   //localStorage.clear();
   startGame();
-  //getLevel();
-  //console.log('on load');
-  //document.getItem('level');
 };
-// document.addEventListener('DOMContentLoaded', () => {
-//   console.log('Hello World!');
-// });
